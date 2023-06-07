@@ -1,0 +1,30 @@
+{
+  "name": "cse341-final",
+  "version": "1.0.0",
+  "description": "final project for CSE341 a group project",
+  "main": "server.js",
+  "scripts": {
+    "test": "nodemon server.js",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zrobker/CSE341-Final.git"
+  },
+  "keywords": [
+    "Groups",
+    "scheduling",
+    "service",
+    "web",
+    "service"
+  ],
+  "author": "Zach Robker, Nathan Hoskins, Rafel Ferraz",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/zrobker/CSE341-Final/issues"
+  },
+  "homepage": "https://github.com/zrobker/CSE341-Final#readme",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
