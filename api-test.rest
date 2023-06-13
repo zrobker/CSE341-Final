@@ -1,0 +1,31 @@
+###
+GET http://localhost:3000/users
+
+###
+POST http://localhost:3000/users
+content-type: application/json
+
+{
+    "name": "John Doe",
+    "password": "123456ABC",
+    "email": "jonh@gmail.com",
+    "phone_number": "1234556789",
+    "createdAt": "01/01/1900",
+    "updatedAt": "01/01/1900",
+    "thumbnail": "1.png"
+}
+
+###
+GET http://localhost:3000/events
+
+###
+POST http://localhost:3000/events
+content-type: application/json
+
+{
+    "name": "Basket ball this thursday",
+    "local": "Church",
+    "createdBy": "6487c6cdfac6d6f908771e7f",
+    "createdAt": "01/01/1900",
+    "updatedAt": "01/01/1900"
+}
