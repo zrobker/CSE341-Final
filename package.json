@@ -32,8 +32,8 @@
     "express-validator": "^7.0.1",
     "mongodb": "^5.6.0",
     "mongoose": "^7.2.4",
-    "nodemon": "^2.0.22",
-    "swagger": "^0.7.5",
+    "nodemon": "^1.14.9",
+    "swagger": "^0.0.1",
     "swagger-autogen": "^2.23.1",
     "swagger-ui-express": "^4.6.3",
     "validator": "^13.9.0"
