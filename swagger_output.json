@@ -5,10 +5,10 @@
     "description": "API documentation for your Node.js app",
     "version": "1.0.0"
   },
-  "host": "localhost:3000",
+  "host": "cse341-final-twkm.onrender.com",
   "basePath": "/",
   "schemes": [
-    "http"
+    "https"
   ],
   "consumes": [
     "application/json"
