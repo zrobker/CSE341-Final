@@ -16,6 +16,65 @@
   "produces": [
     "application/json"
   ],
+  "components": {
+    "schemas": {
+      "User": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "example": "John Doe"
+          },
+          "password": {
+            "type": "string",
+            "example": "123456ABC"
+          },
+          "email": {
+            "type": "string",
+            "example": "john@gmail.com"
+          },
+          "phone_number": {
+            "type": "string",
+            "example": "123456789"
+          },
+          "createdAt": {
+            "type": "string",
+            "example": "1900-01-01T04:14:24.000Z"
+          },
+          "updatedAt" : {
+            "type": "string",
+            "example": "1900-01-01T04:14:24.000Z"
+          }
+        },
+        "required": ["name", "password", "email", "phone_number"]
+      },
+      "Event": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "example": "Basket ball this thursday"
+          },
+          "local": {
+            "type": "string",
+            "example": "Church"
+          },
+          "createdAt": {
+            "type": "string",
+            "example": "1900-01-01T04:14:24.000Z"
+          },
+          "updatedAt": {
+            "type": "string",
+            "example": "1900-01-01T04:14:24.000Z"
+          },
+          "createdBy": {
+            "type": "string",
+            "example": "6487c6cdfac6d6f908771e7f"
+          }
+        },
+        "required": ["name", "local"]
+      }}},
+
   "paths": {
     "/users": {
       "get": {
@@ -29,7 +88,15 @@
       },
       "post": {
         "description": "",
-        "parameters": [],
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "$ref": "#/components/schemas/User"
+            }
+          }
+        ],
         "responses": {
           "200": {
             "description": "OK"
@@ -49,7 +116,15 @@
       },
       "post": {
         "description": "",
-        "parameters": [],
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "$ref": "#/components/schemas/Event"
+            }
+          }
+        ],
         "responses": {
           "200": {
             "description": "OK"
