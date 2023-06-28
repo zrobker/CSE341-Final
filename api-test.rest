@@ -1,6 +1,7 @@
 ###
 GET http://localhost:3000/users
-
+###
+GET http://localhost:3000/users/6494b058a23ae016a0bc3218
 ###
 POST http://localhost:3000/users
 content-type: application/json
@@ -17,6 +18,8 @@ content-type: application/json
 
 ###
 GET http://localhost:3000/events
+###
+GET http://localhost:3000/events/6494b076a23ae016a0bc321b
 
 ###
 POST http://localhost:3000/events
@@ -29,3 +32,28 @@ content-type: application/json
     "createdAt": "01/01/1900",
     "updatedAt": "01/01/1900"
 }
+###
+PUT http://localhost:3000/users/6494b058a23ae016a0bc3218
+Content-Type: application/json
+
+{
+  "name": "Jane Doe",
+  "password": "newPassword123",
+  "email": "Janedoe@example.com",
+  "phone_number": "1234567890"
+}
+
+###
+PUT http://localhost:3000/events/6494b076a23ae016a0bc321b
+Content-Type: application/json
+
+{
+  "name": "Updated Event Name",
+  "local": "Updated Event Location"
+}
+
+### 
+DELETE http://localhost:3000/events/6494b076a23ae016a0bc321b
+
+###
+DELETE http://localhost:3000/users/6494b058a23ae016a0bc3218
