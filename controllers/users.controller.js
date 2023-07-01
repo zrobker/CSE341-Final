@@ -1,3 +1,4 @@
+const { log } = require("console");
 const DatabaseError = require("../errors/database.error");
 
 const UserModel = require("../models/User").UserModel;
@@ -72,10 +73,11 @@ const updateUser = async (req, res, next) => {
 };
 
 const login = async (req, res) => {
-  const userName = req.params.name;
-  const password = req.params.password;
-  const user = await UserModel.findOne({name: userName})
-  const userPassword = await UserModel.findOne({password: password})
+  const userName = req.body.name;
+  const password = req.body.password;
+  const user = await UserModel.findOne({name: userName});
+  console.log(user);
+  const userPassword = user.password;
   if (!user) {
     return res.status(404).json({ error: "There is no user with that name." });
   }
