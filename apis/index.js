@@ -12,7 +12,7 @@ router.get("/events/:id", EventsController.getOne);
 /** POST */
 router.post("/users", UsersController.createOne);
 router.post("/events", EventsController.createOne);
-
+router.post("/users/login", UsersController.login);
 /** PUT */
 router.put("/users/:id", UsersController.updateUser);
 router.put("/events/:id", EventsController.updateEvent);

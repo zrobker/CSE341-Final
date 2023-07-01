@@ -17,9 +17,18 @@ content-type: application/json
 }
 
 ###
+POST http://localhost:3000/users/login
+content-type: application/json
+
+{
+    "name": "John Doe",
+    "password": "123456ABC"
+}
+
+###
 GET http://localhost:3000/events
 ###
-GET http://localhost:3000/events/6494b076a23ae016a0bc321b
+GET http://localhost:3000/events/649ca609400c0310bf800bd3
 
 ###
 POST http://localhost:3000/events
@@ -53,7 +62,7 @@ Content-Type: application/json
 }
 
 ### 
-DELETE http://localhost:3000/events/6494b076a23ae016a0bc321b
+DELETE http://localhost:3000/events/64a0698a72ba57e8fc37c2ec
 
 ###
 DELETE http://localhost:3000/users/6494b058a23ae016a0bc3218

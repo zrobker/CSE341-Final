@@ -28,7 +28,7 @@ const createOne = (req, res, next) => {
       console.error(e);
       next(
         new DatabaseError(
-          "Something went wrong when trying to create a new event.",
+          "Something went wrong when trying to create a new user.",
           500,
           true
         )
@@ -68,6 +68,27 @@ const updateUser = async (req, res, next) => {
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: "Internal server error" });
+  }
+};
+
+const login = async (req, res) => {
+  const userName = req.params.name;
+  const password = req.params.password;
+  const user = await UserModel.findOne({name: userName})
+  const userPassword = await UserModel.findOne({password: password})
+  if (!user) {
+    return res.status(404).json({ error: "There is no user with that name." });
+  }
+  try {
+    if (password == userPassword){
+      res.send("Login Successfull!");
+      // Any addtional actions desired when logged in go here
+    } else {
+      res.send("Login Failed, password does not match.");
+      // Send back to login page
+    }
+  } catch {
+    res.status(500).send();
   }
 };
 
@@ -113,4 +134,5 @@ module.exports = {
   updateUser,
   getAll,
   createOne,
+  login
 };
