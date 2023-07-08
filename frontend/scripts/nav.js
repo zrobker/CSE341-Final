@@ -1,6 +1,9 @@
 // Select the header container element
 var headerContainer = document.getElementById('page_head');
 
+// Create an unordered list element
+var ul = document.createElement('ul');
+
 // Create an array of page names and their corresponding URLs
 var pages = [
   { name: 'Home', url: 'index.html' },
@@ -15,6 +18,9 @@ var currentPageUrl = window.location.pathname;
 
 // Iterate over the pages array and create the navigation links
 pages.forEach(function(page) {
+  // Create a list item for each link
+  var li = document.createElement('li');
+
   // Create the link
   var link = document.createElement('a');
   link.href = page.url;
@@ -22,10 +28,16 @@ pages.forEach(function(page) {
 
   // Disable the link if it matches the current page's URL
   if (currentPageUrl.includes(page.url)) {
-    link.classList.add('disabled'); // Add a CSS class to style the disabled link
-    link.removeAttribute('href'); // Remove the href attribute to disable the link
+    link.classList.add('disabled');
+    link.removeAttribute('href');
   }
 
-  // Append the link to the header container
-  headerContainer.appendChild(link);
+  // Append the link to the list item
+  li.appendChild(link);
+
+  // Append the list item to the unordered list
+  ul.appendChild(li);
 });
+
+// Append the unordered list to the header container
+headerContainer.appendChild(ul);
