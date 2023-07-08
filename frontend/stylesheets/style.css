@@ -267,4 +267,9 @@ html{
     .thumb-display img:hover{
       transform: scale(1.5);
     }
+    .disabled {
+        pointer-events: none;
+        opacity: 0.5;
+        /* Add any other desired styling for disabled links */
+      }      
 }
