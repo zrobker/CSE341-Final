@@ -1,29 +1,36 @@
-import  {createConnection} from './api';
+import { connection } from './api.js';
+
 async function getEventsList() {
-    const url = '/events';
-    const connection = createConnection
-    try {
-      const events = await connection.sendRequest(url);
+  const url = '/events';
 
-      // Sort events by date created
-      events.sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt));
+  try {
+    const events = await connection.sendRequest(url);
+    return events;
+  } catch (error) {
+    console.error(error);
+    return [];
+  }
+}
 
-      const eventList = document.getElementById('event_list');
+function renderEvents(events) {
+  const eventList = document.getElementById('event_list');
+  eventList.innerHTML = '';
 
-      events.forEach((event) => {
-        const li = document.createElement('li');
-        li.textContent = event.name;
+  events.forEach((event) => {
+    const li = document.createElement('li');
+    li.textContent = event.name;
 
-        const location = document.createElement('ul');
-        const locationItem = document.createElement('li');
-        locationItem.textContent = event.local;
-        location.appendChild(locationItem);
+    const location = document.createElement('ul');
+    const locationItem = document.createElement('li');
+    locationItem.textContent = event.local;
+    location.appendChild(locationItem);
 
-        li.appendChild(location);
-        eventList.appendChild(li);
-      });
-    } catch (error) {
-      console.error(error);
-    }
+    li.appendChild(location);
+    eventList.appendChild(li);
+  });
+}
+const init = async () => {
+    const events = await getEventsList();
+    renderEvents(events);
   };
-module.exports = {getEventsList};
+export { getEventsList, renderEvents, init };
