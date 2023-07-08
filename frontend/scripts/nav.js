@@ -1,5 +1,5 @@
 // Select the header container element
-var headerContainer = document.getElementById('page_head');
+var headerContainer = document.getElementById('nav_head');
 
 // Create an unordered list element
 var ul = document.createElement('ul');
