@@ -1,31 +1,31 @@
-const headerContainer = document.getElementById('page_head');
+// Select the header container element
+var headerContainer = document.getElementById('page_head');
 
-// Create the home link
-var homeLink = document.createElement('a');
-homeLink.href = '../index.html';
-homeLink.textContent = 'Home';
-headerContainer.appendChild(homeLink);
+// Create an array of page names and their corresponding URLs
+var pages = [
+  { name: 'Home', url: 'index.html' },
+  { name: 'View Events', url: 'view.html' },
+  { name: 'Add Event', url: 'add.html' },
+  { name: 'Update Event', url: 'update.html' },
+  { name: 'Delete Event', url: 'delete.html' }
+];
 
-// Create the view events link
-var viewEventsLink = document.createElement('a');
-viewEventsLink.href = '../view.html';
-viewEventsLink.textContent = 'View Events';
-headerContainer.appendChild(viewEventsLink);
+// Get the current page's URL
+var currentPageUrl = window.location.pathname;
 
-// Create the add event link
-var addEventLink = document.createElement('a');
-addEventLink.href = '../add.html';
-addEventLink.textContent = 'Add Event';
-headerContainer.appendChild(addEventLink);
+// Iterate over the pages array and create the navigation links
+pages.forEach(function(page) {
+  // Create the link
+  var link = document.createElement('a');
+  link.href = page.url;
+  link.textContent = page.name;
 
-// Create the update event link
-var updateEventLink = document.createElement('a');
-updateEventLink.href = '../update.html';
-updateEventLink.textContent = 'Update Event';
-headerContainer.appendChild(updateEventLink);
+  // Disable the link if it matches the current page's URL
+  if (currentPageUrl.includes(page.url)) {
+    link.classList.add('disabled'); // Add a CSS class to style the disabled link
+    link.removeAttribute('href'); // Remove the href attribute to disable the link
+  }
 
-// Create the delete event link
-var deleteEventLink = document.createElement('a');
-deleteEventLink.href = '../delete.html';
-deleteEventLink.textContent = 'Delete Event';
-headerContainer.appendChild(deleteEventLink);
+  // Append the link to the header container
+  headerContainer.appendChild(link);
+});
