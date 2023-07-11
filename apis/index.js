@@ -8,6 +8,7 @@ router.get("/users", UsersController.getAll);
 router.get("/events", EventsController.getAll);
 router.get("/users/:id", UsersController.getOne);
 router.get("/events/:id", EventsController.getOne);
+router.get("/events/createdBy/:id", EventsController.getCreatedBy);
 
 /** POST */
 router.post("/users", UsersController.createOne);

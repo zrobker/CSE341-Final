@@ -9,9 +9,9 @@ const doc = {
     description: "API documentation for your Node.js app",
     version: "1.0.0",
   },
-  host: "localhost:3000", // Replace with your app's URL
+  host: "cse341-final-twkm.onrender.com", // Replace with your app's URL
   basePath: "/",
-  schemes: ["http"], // Add 'https' if your app uses HTTPS
+  schemes: ["https"], // Add 'https' if your app uses HTTPS
   consumes: ["application/json"],
   produces: ["application/json"],
 };

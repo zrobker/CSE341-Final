@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="stylesheets/style.css" >
+    <title>Add Event</title>
+</head>
+<body>
+    <nav id="nav_head">
+        <script src="scripts/nav.js"></script>
+    </nav>
+    <main>
+        <h1>Create new event</h1>
+        <form id="post_event">
+            <label name="event_name_lbl" for="event_name">Event name: </label><input id="event_name" name="event_name" type="text"><br>
+            <label name="event_location_lbl" for="event_location">Location: </label><input id="event_location" name="event_location"><br>
+            <button id="post" type="submit">post event</button> <button id="reset" name="reset" type="reset">reset</button>
+        </form>
+
+        <script src="scripts/api.js" type="module"></script>
+        <script src="scripts/postEvent.js" type="module"></script>
+        <script>
+            const form = document.getElementById('post_event');
+            form.addEventListener('submit', handleFormSubmit);
+
+            function handleFormSubmit(event) {
+              event.preventDefault();
+              // Retrieve the JWT and user ID as needed
+
+              const eventName = document.getElementById('event_name').value;
+              const eventLocation = document.getElementById('event_location').value;
+
+              const eventData = {
+                name: eventName,
+                local: eventLocation,
+                createdAt: new Date().toISOString(),
+                updatedAt: new Date().toISOString(),
+                createdBy: userId // Replace with actual user ID from JWT
+              };
+
+              postEvent(eventData);
+            }
+        </script>
+    </main>
+</body>
+</html>

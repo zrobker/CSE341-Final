@@ -20,7 +20,8 @@ content-type: application/json
 GET http://localhost:3000/events
 ###
 GET http://localhost:3000/events/6494b076a23ae016a0bc321b
-
+###
+GET http://localhost:3000/events/createdBy/6487c6cdfac6d6f908771e7f
 ###
 POST http://localhost:3000/events
 content-type: application/json
