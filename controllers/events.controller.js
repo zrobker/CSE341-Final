@@ -105,10 +105,27 @@ const deleteOne = async (req, res, next) => {
   }
 };
 
+const getCreatedBy = async (req, res, next) => {
+  const createdById = req.params.id;
+
+  try {
+    const event = await EventModel.find({ createdBy: createdById });
+
+    if (!event) {
+      return res.status(404).json({ error: "Event no found" });
+    }
+    res.status(200).json(event);
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ error: "Internal server error." });
+  }
+};
+
 module.exports = {
   deleteOne,
   getOne,
   updateEvent,
   getAll,
   createOne,
+  getCreatedBy,
 };
