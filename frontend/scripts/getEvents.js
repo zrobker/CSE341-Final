@@ -22,12 +22,13 @@ function renderEvents(events) {
 
     const location = document.createElement('ul');
     const locationItem = document.createElement('li');
-    locationItem.textContent = event.local;
+    locationItem.textContent = event.location;
     location.appendChild(locationItem);
 
     li.appendChild(location);
     eventList.appendChild(li);
-  });
+  })
+  return eventListS;
 }
 const init = async () => {
     const events = await getEventsList();
