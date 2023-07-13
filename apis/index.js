@@ -74,6 +74,4 @@ router.delete(
   EventsController.deleteOne
 );
 
-module.exports = {
-  router,
-};
+module.exports = { router };

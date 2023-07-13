@@ -4,6 +4,7 @@
   "description": "final project for CSE341 a group project",
   "main": "server.js",
   "scripts": {
+    "jest": "jest",
     "test": "nodemon server.js",
     "start": "node server.js"
   },
@@ -37,5 +38,9 @@
     "swagger-autogen": "^2.23.1",
     "swagger-ui-express": "^4.6.3",
     "validator": "^13.9.0"
+  },
+  "devDependencies": {
+    "jest": "^29.6.1",
+    "supertest": "^6.3.3"
   }
 }
