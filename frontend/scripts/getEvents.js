@@ -5,12 +5,12 @@ async function getEventsList() {
 
   try {
     const events = await connection.sendRequest(url);
-    return events;
+    renderEvents(events);
   } catch (error) {
     console.error(error);
-    return [];
   }
 }
+
 //Creates list of events for inserting into website.  Will figure out how to make this a list.
 function renderEvents(events) {
   const eventList = document.getElementById('event_list');
