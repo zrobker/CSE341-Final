@@ -1,5 +1,5 @@
 const request = require("supertest");
-const { app } = require("../server");
+const app = require("../server");
 
 describe("Server", () => {
   it("should return 'Logged out' when not authenticated", async () => {
@@ -13,9 +13,9 @@ describe("Server", () => {
 });
 
 test("Testing Login", async () => {
-    // Some Convince this thing I have logged in?
-    //
-   // Make a request to the server
+  // Some Convince this thing I have logged in?
+  //
+  // Make a request to the server
   const response = await request(app).get("/");
 
   // Assert the response
