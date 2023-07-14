@@ -1,5 +1,5 @@
 const request = require("supertest");
-const { app } = require("./server");
+const { app } = require("../server");
 const UserModel = require("../models/User").UserModel;
 const {
   getAll,
