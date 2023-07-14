@@ -1,40 +1,41 @@
-require('dotenv').config();
+require("dotenv").config();
 
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
 let _db;
 
-const initDb = callback => {
+const initDb = (callback) => {
   if (_db) {
-    console.log('Db is already initialized!');
+    console.log("Db is already initialized!");
     return callback(null, _db);
   }
-  mongoose.connect(process.env.DB_CONNECTION)
-    .then(client => {
+  mongoose
+    .connect(process.env.DB_CONNECTION)
+    .then((client) => {
       _db = client;
       callback(null, _db);
     })
-    .catch(err => {
+    .catch((err) => {
       callback(err);
     });
 };
 
 const getDb = () => {
   if (!_db) {
-    throw Error('Db not initialized');
+    throw Error("Db not initialized");
   }
   return _db;
 };
 
-const closeDb  = callback => {
+const closeDb = () => {
   if (!_db) {
-    throw Error('Db not initialized');
+    throw Error("Db not initialized");
   }
-  db.close();
+  mongoose.connection.close();
 };
 
 module.exports = {
   initDb,
   getDb,
-  closeDb
+  closeDb,
 };

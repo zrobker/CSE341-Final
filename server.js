@@ -6,10 +6,8 @@ const bodyParser = require("body-parser");
 const APIs = require("./apis");
 const DB = require("./models/db_connection");
 const cors = require("cors");
-
 const app = express();
 
-// TODO: Fix swagger
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 app.use(bodyParser.json());
 
@@ -20,16 +18,10 @@ app.use(cors(origin));
 
 app.use("/", APIs.router);
 
-DB.initDb(() => {
-  console.log(`⚡️[server]: Connection with MongoDB database was successful!`);
-  const port = process.env.PORT || 3000;
-  app.listen(port, () => {
-    console.log(`⚡️[server]: Server is running at http://localhost:${port}`);
-  });
-});
+// app listening was moved to index.js file so that unit tests could import the server without listening
 
-const { auth } = require('express-openid-connect');
-require('dotenv').config();
+const { auth } = require("express-openid-connect");
+require("dotenv").config();
 
 const config = {
   authRequired: false,
@@ -37,16 +29,15 @@ const config = {
   secret: process.env.SECRET,
   baseURL: process.env.BASE_URL,
   clientID: process.env.CLIENT_ID,
-  issuerBaseURL: process.env.ISSUER_BASE_URL
+  issuerBaseURL: process.env.ISSUER_BASE_URL,
 };
 
 // auth router attaches /login, /logout, and /callback routes to the baseURL
 app.use(auth(config));
 
 // req.isAuthenticated is provided from the auth router
-app.get('/', (req, res) => {
-  res.send(req.oidc.isAuthenticated() ? 'Logged in' : 'Logged out');
+app.get("/", (req, res) => {
+  res.send(req.oidc.isAuthenticated() ? "Logged in" : "Logged out");
 });
 
-module.exports = { app };
-
+module.exports = app;

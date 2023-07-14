@@ -1,8 +1,17 @@
 const request = require("supertest");
-const baseURL = "http://localhost:3000";
+const app = require("../server");
+const DB = require("../models/db_connection");
 var userId = "";
 var eventId = "";
 
+beforeAll(() => {
+  DB.initDb(() => {
+    console.log("⚡️[server]: Server is running at http://localhost:3000");
+  });
+});
+afterAll(() => {
+  DB.closeDb();
+});
 describe("POST", () => {
   const newUser = {
     name: "John Doe",
@@ -20,13 +29,14 @@ describe("POST", () => {
     createdAt: "2023-06-23T10:49:24.000Z",
     updatedAt: "2023-06-23T10:49:24.000Z",
   };
+
   test("Test POST localhost:3000/users", async () => {
-    const response = await request(baseURL).post("/users").send(newUser);
+    const response = await request(app).post("/users").send(newUser);
     userId = response.body._id;
     expect(response.statusCode).toBe(200);
   });
   test("Test POST localhost:3000/events", async () => {
-    const response = await request(baseURL).post("/events").send(newEvent);
+    const response = await request(app).post("/events").send(newEvent);
     eventId = response.body._id;
     expect(response.statusCode).toBe(200);
   });
@@ -34,28 +44,23 @@ describe("POST", () => {
 
 describe("GET", () => {
   test("Test GET localhost:3000/users", async () => {
-    const response = await request(baseURL).get("/users");
-
+    const response = await request(app).get("/users");
     expect(response.statusCode).toBe(200);
   });
   test("Test GET localhost:3000/events", async () => {
-    const response = await request(baseURL).get("/events");
-
+    const response = await request(app).get("/events");
     expect(response.statusCode).toBe(200);
   });
   test("Test GET localhost:3000/events/:id", async () => {
-    const response = await request(baseURL).get(`/events/${eventId}`);
-
+    const response = await request(app).get(`/events/${eventId}`);
     expect(response.statusCode).toBe(200);
   });
   test("Test GET localhost:3000/users/:id", async () => {
-    const response = await request(baseURL).get(`/users/${userId}`);
-
+    const response = await request(app).get(`/users/${userId}`);
     expect(response.statusCode).toBe(200);
   });
   test("Test GET localhost:3000/events/createdBy/:id", async () => {
-    const response = await request(baseURL).get(`/events/createdBy/${userId}`);
-
+    const response = await request(app).get(`/events/createdBy/${userId}`);
     expect(response.statusCode).toBe(200);
   });
 });
@@ -68,13 +73,13 @@ describe("PUT", () => {
     name: "New Event",
   };
   test("Test PUT http://localhost:3000/users/:id", async () => {
-    const response = await request(baseURL)
+    const response = await request(app)
       .put(`/users/${userId}`)
       .send(updateUser);
     expect(response.statusCode).toBe(204);
   });
   test("Test PUT http://localhost:3000/events/:id", async () => {
-    const response = await request(baseURL)
+    const response = await request(app)
       .put(`/events/${eventId}`)
       .send(updateEvent);
     expect(response.statusCode).toBe(204);
@@ -83,11 +88,11 @@ describe("PUT", () => {
 
 describe("DELETE", () => {
   test("Test DELETE http://localhost:3000/users/:id", async () => {
-    const response = await request(baseURL).delete(`/users/${userId}`);
+    const response = await request(app).delete(`/users/${userId}`);
     expect(response.statusCode).toBe(202);
   });
   test("Test DELETE http://localhost:3000/events/:id", async () => {
-    const response = await request(baseURL).delete(`/events/${eventId}`);
+    const response = await request(app).delete(`/events/${eventId}`);
     expect(response.statusCode).toBe(202);
   });
 });
