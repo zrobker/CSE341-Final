@@ -57,4 +57,4 @@ Content-Type: application/json
 DELETE http://localhost:3000/events/64b06f315ef8358a663b1381
 
 ###
-DELETE http://localhost:3000/users/64b176a1bf17f2fe28d67125
+DELETE http://localhost:3000/users/64b1a222829bc319d153fa84
