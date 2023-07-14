@@ -1,6 +1,9 @@
 const { log } = require("console");
 const DatabaseError = require("../errors/database.error");
 
+const jwt = require('jsonwebtoken');
+require('dotenv').config();
+
 const UserModel = require("../models/User").UserModel;
 
 const getAll = (req, res, next) => {
@@ -76,14 +79,17 @@ const login = async (req, res) => {
   const userName = req.body.name;
   const password = req.body.password;
   const user = await UserModel.findOne({name: userName});
-  console.log(user);
-  const userPassword = user.password;
+  // console.log(user);
+  
   if (!user) {
     return res.status(404).json({ error: "There is no user with that name." });
   }
   try {
+    const userPassword = user.password;
     if (password == userPassword){
-      res.send("Login Successfull!");
+      // res.send("Login Successfull!");
+      const accessToken = jwt.sign(user,process.env.ACCESS_TOKEN_SECRET);
+      res.json({ accessToken: accessToken });
       // Any addtional actions desired when logged in go here
     } else {
       res.send("Login Failed, password does not match.");
