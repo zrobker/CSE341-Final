@@ -34,8 +34,13 @@ const closeDb = () => {
   mongoose.connection.close();
 };
 
+const getCollection = (collectionName) => {
+  return mongoose.connection.collection(collectionName);
+};
+
 module.exports = {
   initDb,
   getDb,
   closeDb,
+  getCollection,
 };

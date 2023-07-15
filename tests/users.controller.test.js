@@ -7,7 +7,7 @@ const {
   updateUser,
   getOne,
   deleteOne,
-} = require("../controllers/users.controller");
+} = require("./users.controller");
 
 describe("Users Controller", () => {
   // Mock UserModel.find method

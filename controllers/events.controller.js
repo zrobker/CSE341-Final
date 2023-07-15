@@ -1,4 +1,5 @@
 const EventModel = require("../models/Event").EventModel;
+const DatabaseError = require("../errors/database.error");
 
 const getAll = (req, res, next) => {
   EventModel.find({})
@@ -20,7 +21,7 @@ const createOne = (req, res, next) => {
   // TODO: add validation
   EventModel.create(req.body)
     .then((result) => {
-      return res.send(result);
+      return res.status(200).send(result);
     })
     .catch((e) => {
       console.error(e);
