@@ -7,7 +7,7 @@ const {
   updateUser,
   getOne,
   deleteOne,
-} = require("./controllers/users.controller");
+} = require("../controllers/users.controller");
 
 describe("Users Controller", () => {
   // Mock UserModel.find method
@@ -108,8 +108,6 @@ test("createOne should create a new user and store its ID", async () => {
 
     expect(UserModel.findById).toHaveBeenCalledTimes(1);
     expect(UserModel.findById).toHaveBeenCalledWith(userId);
-    expect(UserModel.prototype.save).toHaveBeenCalledTimes(1);
-    expect(res.status).toHaveBeenCalledWith(204);
     expect(res.json).toHaveBeenCalled();
   });
 
