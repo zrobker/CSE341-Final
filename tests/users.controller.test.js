@@ -7,7 +7,7 @@ const {
   updateUser,
   getOne,
   deleteOne,
-} = require("./users.controller");
+} = require("../controllers/users.controller");
 
 describe("Users Controller", () => {
   // Mock UserModel.find method
@@ -50,6 +50,36 @@ describe("Users Controller", () => {
     expect(UserModel.create).toHaveBeenCalledWith(req.body);
     expect(res.send).toHaveBeenCalled();
   });
+
+  let testUserId; // Declare a variable to store the user ID
+
+test("createOne should create a new user and store its ID", async () => {
+  const req = {
+    body: {
+      name: "John Doe",
+      email: "johndoe@example.com",
+      password: "password123",
+      phone_number: "1234567890",
+    },
+  };
+  const res = {
+    send: jest.fn(),
+  };
+
+  UserModel.create = jest.fn().mockResolvedValue({
+    _id: "user123", // Store a fixed ID for testing
+    ...req.body,
+    createdAt: new Date(),
+  });
+
+  await createOne(req, res);
+
+  expect(UserModel.create).toHaveBeenCalledTimes(1);
+  expect(UserModel.create).toHaveBeenCalledWith(req.body);
+  expect(res.send).toHaveBeenCalled();
+
+  testUserId = "user123"; // Store the user ID
+});
 
   test("updateUser should update an existing user", async () => {
     const userId = "user123";

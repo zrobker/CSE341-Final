@@ -47,6 +47,14 @@ const UserSchema = new mongoose.Schema({
     ref: 'Event',
   },
 });
+UserSchema.methods.save = async function () {
+  this.updatedAt = new Date();
+  return await this.model("User").findOneAndUpdate(
+    { _id: this._id },
+    { $set: this },
+    { new: true }
+  );
+};
 
 const UserModel = mongoose.model('user', UserSchema);
 
