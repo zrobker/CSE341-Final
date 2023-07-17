@@ -274,16 +274,16 @@
               "type": "object",
               "properties": {
                 "name": {
-                  "example": "any"
+                  "example": "New name"
                 },
                 "password": {
-                  "example": "any"
+                  "example": "apoihsdfkjawe234@"
                 },
                 "email": {
-                  "example": "any"
+                  "example": "newemail@gmail.com"
                 },
                 "phone_number": {
-                  "example": "any"
+                  "example": "1234567890"
                 }
               }
             }
@@ -372,16 +372,10 @@
               "type": "object",
               "properties": {
                 "name": {
-                  "example": "any"
+                  "example": "New name"
                 },
                 "local": {
-                  "example": "any"
-                },
-                "confirmed": {
-                  "example": "any"
-                },
-                "invites": {
-                  "example": "any"
+                  "example": "New location"
                 }
               }
             }
