@@ -1,5 +1,5 @@
-const mongoose = require('mongoose')
-const validator  = require('validator');
+const mongoose = require("mongoose");
+const validator = require("validator");
 
 // Minimum eight characters, at least one letter and one number:
 const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
@@ -44,21 +44,13 @@ const UserSchema = new mongoose.Schema({
   },
   events: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'Event',
+    ref: "Event",
   },
 });
-UserSchema.methods.save = async function () {
-  this.updatedAt = new Date();
-  return await this.model("User").findOneAndUpdate(
-    { _id: this._id },
-    { $set: this },
-    { new: true }
-  );
-};
 
-const UserModel = mongoose.model('user', UserSchema);
+const UserModel = mongoose.model("user", UserSchema);
 
 module.exports = {
-    UserModel,
-    UserSchema
-}
+  UserModel,
+  UserSchema,
+};
