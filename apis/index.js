@@ -75,21 +75,21 @@ router.post(
 );
 router.post(
   "/addresses",
-  // requiresAuth(),
+  requiresAuth(),
   addressesValidation(),
   validateRequest,
   AddressesController.createOne
 );
 router.post(
   "/users",
-  // requiresAuth(),
+  requiresAuth(),
   userValidation(),
   validateRequest,
   UsersController.createOne
 );
 router.post(
   "/events",
-  // requiresAuth(),
+  requiresAuth(),
   eventValidation(),
   validateRequest,
   EventsController.createOne
@@ -98,14 +98,14 @@ router.post(
 /** PUT */
 router.put(
   "/users/:id",
-  // requiresAuth(),
+  requiresAuth(),
   userValidation(),
   validateRequest,
   UsersController.updateUser
 );
 router.put(
   "/events/:id",
-  // requiresAuth(),
+  requiresAuth(),
   eventValidation(),
   validateRequest,
   EventsController.updateEvent
@@ -114,28 +114,28 @@ router.put(
 /** DELETE */
 router.delete(
   "/activities/:id",
-  // requiresAuth(),
+  requiresAuth(),
   deleteValidation,
   validateRequest,
   ActivitiesController.deleteOne
 );
 router.delete(
   "/addresses/:id",
-  // requiresAuth(),
+  requiresAuth(),
   deleteValidation,
   validateRequest,
   AddressesController.deleteOne
 );
 router.delete(
   "/users/:id",
-  // requiresAuth(),
+  requiresAuth(),
   deleteValidation,
   validateRequest,
   UsersController.deleteOne
 );
 router.delete(
   "/events/:id",
-  // requiresAuth(),
+  requiresAuth(),
   deleteValidation,
   validateRequest,
   EventsController.deleteOne

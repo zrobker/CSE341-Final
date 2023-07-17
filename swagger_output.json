@@ -283,6 +283,7 @@
                   "example": "newemail@gmail.com"
                 },
                 "phone_number": {
+                  "type": "string",
                   "example": "1234567890"
                 }
               }
