@@ -64,7 +64,7 @@ const updateUser = async (req, res, next) => {
 
     await user.save(); // Save the changes to the database
 
-    res.status(204).json(user);
+    res.status(200).json(user);
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: "Internal server error" });

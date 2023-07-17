@@ -99,7 +99,7 @@ describe("Events controller", () => {
 
     expect(EventModel.findById).toHaveBeenCalledWith(eventId);
     expect(updatedEvent.save).toHaveBeenCalled();
-    expect(res.status).toHaveBeenCalledWith(204);
+    expect(res.status).toHaveBeenCalledWith(200);
     expect(res.json).toHaveBeenCalledWith(updatedEvent);
   });
   test("getCreatedBy", async () => {

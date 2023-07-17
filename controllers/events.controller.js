@@ -63,7 +63,7 @@ const updateEvent = async (req, res, next) => {
 
     await event.save();
 
-    res.status(204).json(event);
+    res.status(200).json(event);
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: "Internal server error" });

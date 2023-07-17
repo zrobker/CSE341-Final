@@ -106,13 +106,13 @@ describe("PUT", () => {
     const response = await request(app)
       .put(`/users/${userId}`)
       .send(updateUser);
-    //expect(response.statusCode).toBe(204);
+    expect(response.statusCode).toBe(200);
   });
   test("Test PUT http://localhost:3000/events/:id", async () => {
     const response = await request(app)
       .put(`/events/${eventId}`)
       .send(updateEvent);
-    expect(response.statusCode).toBe(204);
+    expect(response.statusCode).toBe(200);
   });
 });
 

@@ -1,5 +1,4 @@
 require("dotenv/config");
-const { auth, requiresAuth } = require("express-openid-connect");
 const express = require("express");
 const swaggerUi = require("swagger-ui-express");
 const swaggerDocument = require("./swagger_output.json");
