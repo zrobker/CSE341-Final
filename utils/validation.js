@@ -82,22 +82,29 @@ const addressesValidation = () => {
   ];
 };
 
-const registrationsValidation = () => {
+const activitiesValidation = () => {
   return [
-    body("event")
+    body("name")
       .optional()
       .isString()
       .isLength({ min: 1 })
       .trim()
       .escape()
       .withMessage("Error, 'name' did not meet the require format."),
-    body("user")
+    body("min")
       .optional()
       .isString()
       .isLength({ min: 1 })
       .trim()
       .escape()
-      .withMessage("Error, 'name' did not meet the require format."),
+      .withMessage("Error, 'min' did not meet the require format."),
+    body("max")
+      .optional()
+      .isString()
+      .isLength({ min: 1 })
+      .trim()
+      .escape()
+      .withMessage("Error, 'max' did not meet the require format."),
   ];
 };
 const getValidation = check("method")
@@ -119,7 +126,7 @@ const validateRequest = (req, res, next) => {
 };
 
 module.exports = {
-  registrationsValidation,
+  activitiesValidation,
   addressesValidation,
   eventValidation,
   userValidation,

@@ -1,9 +1,8 @@
-const RegistrationsModel =
-  require("../models/Registrations").RegistrationsModel;
+const ActivitiesModel = require("../models/Activities").ActivitiesModel;
 const DatabaseError = require("../errors/database.error");
 
 const getAll = (req, res, next) => {
-  RegistrationsModel.find({})
+  ActivitiesModel.find({})
     .then((result) => {
       return res.send(result);
     })
@@ -19,7 +18,7 @@ const getAll = (req, res, next) => {
     });
 };
 const createOne = (req, res, next) => {
-  RegistrationsModel.create(req.body)
+  ActivitiesModel.create(req.body)
     .then((result) => {
       return res.status(200).send(result);
     })
@@ -36,18 +35,18 @@ const createOne = (req, res, next) => {
 };
 
 const deleteOne = async (req, res, next) => {
-  const RegistrationId = req.params.id;
+  const ActivityId = req.params.id;
 
   try {
-    const Registration = await RegistrationsModel.findById(RegistrationId);
+    const Activity = await ActivitiesModel.findById(ActivityId);
 
-    if (!Registration) {
-      return res.status(404).json({ error: "Registration not found" });
+    if (!Activity) {
+      return res.status(404).json({ error: "Activity not found" });
     }
 
-    await RegistrationsModel.deleteOne({ _id: RegistrationId });
+    await ActivitiesModel.deleteOne({ _id: ActivityId });
 
-    res.status(202).json({ message: "Registration deleted successfully" });
+    res.status(202).json({ message: "Activity deleted successfully" });
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: "Internal server error" });

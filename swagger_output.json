@@ -48,27 +48,23 @@
         },
         "required": ["name", "password", "email", "phone_number"]
       },
-      "Registration": {
+      "Activity": {
         "type": "object",
         "properties": {
-          "event": {
+          "name": {
             "type": "string",
             "example": "64b2ea81b84a9b37f4358cfe"
           },
-          "user": {
+          "min": {
             "type": "string",
-            "example": "64b2ea5bb84a9b37f4358cfb"
+            "example": "10"
           },
-          "createdAt": {
+          "max": {
             "type": "string",
-            "example": "1900-01-01T04:14:24.000Z"
-          },
-          "updatedAt" : {
-            "type": "string",
-            "example": "1900-01-01T04:14:24.000Z"
+            "example": "30"
           }
         },
-        "required": ["event", "user"]
+        "required": ["name", "min", "max"]
       },
       "Address": {
         "type": "object",
@@ -126,7 +122,7 @@
         }
       }
     },
-    "/registrations": {
+    "/activities": {
       "get": {
         "description": "",
         "parameters": [],
@@ -141,15 +137,13 @@
       },
       "post": {
         "description": "",
-        "parameters": [
-          {
-            "name": "body",
-            "in": "body",
-            "schema": {
-              "$ref": "#/components/schemas/Registration"
-            }
+        "parameters": [      {
+          "name": "body",
+          "in": "body",
+          "schema": {
+            "$ref": "#/components/schemas/Activity"
           }
-        ],
+        }],
         "responses": {
           "200": {
             "description": "OK"
@@ -175,15 +169,13 @@
       },
       "post": {
         "description": "",
-        "parameters": [
-          {
-            "name": "body",
-            "in": "body",
-            "schema": {
-              "$ref": "#/components/schemas/User"
-            }
+        "parameters": [      {
+          "name": "body",
+          "in": "body",
+          "schema": {
+            "$ref": "#/components/schemas/User"
           }
-        ],
+        }],
         "responses": {
           "200": {
             "description": "OK"
@@ -209,15 +201,13 @@
       },
       "post": {
         "description": "",
-        "parameters": [
-          {
-            "name": "body",
-            "in": "body",
-            "schema": {
-              "$ref": "#/components/schemas/Event"
-            }
+        "parameters": [      {
+          "name": "body",
+          "in": "body",
+          "schema": {
+            "$ref": "#/components/schemas/Event"
           }
-        ],
+        }],
         "responses": {
           "200": {
             "description": "OK"
@@ -468,7 +458,7 @@
     "/addresses": {
       "post": {
         "description": "",
-        "parameters": [          {
+        "parameters": [      {
           "name": "body",
           "in": "body",
           "schema": {
@@ -485,7 +475,7 @@
         }
       }
     },
-    "/registrations/{id}": {
+    "/activities/{id}": {
       "delete": {
         "description": "",
         "parameters": [

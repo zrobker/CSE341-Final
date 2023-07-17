@@ -3,10 +3,10 @@ const router = Router();
 const UsersController = require("../controllers/users.controller");
 const EventsController = require("../controllers/events.controller");
 const AddressesController = require("../controllers/addresses.controller");
-const RegistrationsController = require("../controllers/registrations.controller");
+const ActivitiesController = require("../controllers/activities.controller");
 const { auth, requiresAuth } = require("express-openid-connect");
 const {
-  registrationsValidation,
+  activitiesValidation,
   addressesValidation,
   validateRequest,
   userValidation,
@@ -34,10 +34,10 @@ router.get("/", (req, res) => {
 
 /** GET */
 router.get(
-  "/registrations",
+  "/activities",
   getValidation,
   validateRequest,
-  RegistrationsController.getAll
+  ActivitiesController.getAll
 );
 router.get("/users", getValidation, validateRequest, UsersController.getAll);
 router.get("/events", getValidation, validateRequest, EventsController.getAll);
@@ -68,10 +68,10 @@ router.get(
 
 /** POST */
 router.post(
-  "/registrations",
-  registrationsValidation(),
+  "/activities",
+  activitiesValidation(),
   validateRequest,
-  RegistrationsController.createOne
+  ActivitiesController.createOne
 );
 router.post(
   "/addresses",
@@ -113,11 +113,11 @@ router.put(
 
 /** DELETE */
 router.delete(
-  "/registrations/:id",
+  "/activities/:id",
   requiresAuth(),
   deleteValidation,
   validateRequest,
-  RegistrationsController.deleteOne
+  ActivitiesController.deleteOne
 );
 router.delete(
   "/addresses/:id",

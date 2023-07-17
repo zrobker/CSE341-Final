@@ -4,7 +4,7 @@ const DB = require("../models/db_connection");
 var userId = "";
 var eventId = "";
 var addressId = "";
-var registrationId = "";
+var activityId = "";
 
 beforeAll(() => {
   DB.initDb(() => {
@@ -36,11 +36,10 @@ describe("POST", () => {
     createdAt: "2023-06-23T10:49:24.000Z",
     updatedAt: "2023-06-23T10:49:24.000Z",
   };
-  const newRegistration = {
-    event: "64b2ea81b84a9b37f4358cfe",
-    user: "64b2ea5bb84a9b37f4358cfb",
-    createdAt: "2023-06-23T10:49:24.000Z",
-    updatedAt: "2023-06-23T10:49:24.000Z",
+  const newActivity = {
+    name: "Basketball",
+    min: "10",
+    max: "30",
   };
 
   test("Test POST localhost:3000/users", async () => {
@@ -58,11 +57,9 @@ describe("POST", () => {
     addressId = response.body._id;
     expect(response.statusCode).toBe(200);
   });
-  test("Test POST localhost:3000/registrations", async () => {
-    const response = await request(app)
-      .post("/registrations")
-      .send(newRegistration);
-    registrationIdId = response.body._id;
+  test("Test POST localhost:3000/activities", async () => {
+    const response = await request(app).post("/activities").send(newActivity);
+    activityId = response.body._id;
     expect(response.statusCode).toBe(200);
   });
 });
@@ -93,7 +90,7 @@ describe("GET", () => {
     expect(response.statusCode).toBe(200);
   });
   test("Test GET localhost:3000/registrations", async () => {
-    const response = await request(app).get(`/registrations`);
+    const response = await request(app).get(`/activities`);
     expect(response.statusCode).toBe(200);
   });
 });
@@ -132,10 +129,8 @@ describe("DELETE", () => {
     const response = await request(app).delete(`/addresses/${addressId}`);
     expect(response.statusCode).toBe(202);
   });
-  test("Test DELETE http://localhost:3000/registrations/:id", async () => {
-    const response = await request(app).delete(
-      `/registrations/${registrationId}`
-    );
+  test("Test DELETE http://localhost:3000/activities/:id", async () => {
+    const response = await request(app).delete(`/activities/${activityId}`);
     expect(response.statusCode).toBe(202);
   });
 });

@@ -1,0 +1,107 @@
+"components": {
+    "schemas": {
+      "User": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "example": "John Doe"
+          },
+          "password": {
+            "type": "string",
+            "example": "123456ABC"
+          },
+          "email": {
+            "type": "string",
+            "example": "john@gmail.com"
+          },
+          "phone_number": {
+            "type": "string",
+            "example": "123456789"
+          },
+          "createdAt": {
+            "type": "string",
+            "example": "1900-01-01T04:14:24.000Z"
+          },
+          "updatedAt" : {
+            "type": "string",
+            "example": "1900-01-01T04:14:24.000Z"
+          }
+        },
+        "required": ["name", "password", "email", "phone_number"]
+      },
+      "Registration": {
+        "type": "object",
+        "properties": {
+          "event": {
+            "type": "string",
+            "example": "64b2ea81b84a9b37f4358cfe"
+          },
+          "user": {
+            "type": "string",
+            "example": "64b2ea5bb84a9b37f4358cfb"
+          },
+          "createdAt": {
+            "type": "string",
+            "example": "1900-01-01T04:14:24.000Z"
+          },
+          "updatedAt" : {
+            "type": "string",
+            "example": "1900-01-01T04:14:24.000Z"
+          }
+        },
+        "required": ["event", "user"]
+      },
+      "Address": {
+        "type": "object",
+        "properties": {
+          "address": {
+            "type": "string",
+            "example": "123 Example St, Rexburg ID"
+          },
+          "createdAt": {
+            "type": "string",
+            "example": "1900-01-01T04:14:24.000Z"
+          },
+          "updatedAt" : {
+            "type": "string",
+            "example": "1900-01-01T04:14:24.000Z"
+          }
+        },
+        "required": ["address"]
+      },
+      "Event": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "example": "Basket ball this thursday"
+          },
+          "local": {
+            "type": "string",
+            "example": "Church"
+          },
+          "createdAt": {
+            "type": "string",
+            "example": "1900-01-01T04:14:24.000Z"
+          },
+          "updatedAt": {
+            "type": "string",
+            "example": "1900-01-01T04:14:24.000Z"
+          },
+          "createdBy": {
+            "type": "string",
+            "example": "6487c6cdfac6d6f908771e7f"
+          }
+        },
+        "required": ["name", "local"]
+      }}},
+
+
+      {
+        "name": "body",
+        "in": "body",
+        "schema": {
+          "$ref": "#/components/schemas/Event"
+        }
+      }
