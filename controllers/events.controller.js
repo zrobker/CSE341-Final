@@ -61,6 +61,8 @@ const updateEvent = async (req, res, next) => {
     // Update the updatedAt property
     event.updatedAt = new Date();
 
+    await event.save();
+
     res.status(204).json(event);
   } catch (error) {
     console.error(error);

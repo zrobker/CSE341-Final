@@ -62,6 +62,8 @@ const updateUser = async (req, res, next) => {
     // Update the updatedAt property
     user.updatedAt = new Date();
 
+    await user.save(); // Save the changes to the database
+
     res.status(204).json(user);
   } catch (error) {
     console.error(error);

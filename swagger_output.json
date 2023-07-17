@@ -53,7 +53,7 @@
         "properties": {
           "name": {
             "type": "string",
-            "example": "64b2ea81b84a9b37f4358cfe"
+            "example": "Basketball"
           },
           "min": {
             "type": "string",
