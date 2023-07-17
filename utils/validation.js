@@ -70,6 +70,18 @@ const userValidation = () => {
   ];
 };
 
+const addressesValidation = () => {
+  return [
+    body("address")
+      .optional()
+      .isString()
+      .isLength({ min: 1 })
+      .trim()
+      .escape()
+      .withMessage("Error, 'name' did not meet the require format."),
+  ];
+};
+
 const getValidation = check("method")
   .custom((value, { req }) => req.method === "GET")
   .withMessage("Invalid request method");
@@ -89,6 +101,7 @@ const validateRequest = (req, res, next) => {
 };
 
 module.exports = {
+  addressesValidation,
   eventValidation,
   userValidation,
   getValidation,

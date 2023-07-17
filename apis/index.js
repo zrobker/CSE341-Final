@@ -2,8 +2,10 @@ const Router = require("express").Router;
 const router = Router();
 const UsersController = require("../controllers/users.controller");
 const EventsController = require("../controllers/events.controller");
-const { auth, requiresAuth } = require('express-openid-connect');
+const AddressesController = require("../controllers/addresses.controller");
+const { auth, requiresAuth } = require("express-openid-connect");
 const {
+  addressesValidation,
   validateRequest,
   userValidation,
   eventValidation,
@@ -11,30 +13,32 @@ const {
   getValidation,
 } = require("../utils/validation.js");
 
-
-/** 0Auth */
-require('dotenv').config();
 const config = {
   authRequired: false,
   auth0Logout: true,
   secret: process.env.SECRET,
   baseURL: process.env.BASE_URL,
   clientID: process.env.CLIENT_ID,
-  issuerBaseURL: process.env.ISSUER_BASE_URL
+  issuerBaseURL: process.env.ISSUER_BASE_URL,
 };
 
 // auth router attaches /login, /logout, and /callback routes to the baseURL
 router.use(auth(config));
 
 // req.isAuthenticated is provided from the auth router
-router.get('/', (req, res) => {
-  res.send(req.oidc.isAuthenticated() ? 'Logged in' : 'Logged out');
+router.get("/", (req, res) => {
+  res.send(req.oidc.isAuthenticated() ? "Logged in" : "Logged out");
 });
-
 
 /** GET */
 router.get("/users", getValidation, validateRequest, UsersController.getAll);
 router.get("/events", getValidation, validateRequest, EventsController.getAll);
+router.get(
+  "/addresses/",
+  getValidation,
+  validateRequest,
+  AddressesController.getAll
+);
 router.get(
   "/users/:id",
   getValidation,
@@ -55,6 +59,13 @@ router.get(
 );
 
 /** POST */
+router.post(
+  "/addresses",
+  requiresAuth(),
+  addressesValidation(),
+  validateRequest,
+  AddressesController.createOne
+);
 router.post(
   "/users",
   requiresAuth(),
@@ -87,6 +98,13 @@ router.put(
 );
 
 /** DELETE */
+router.delete(
+  "/addresses/:id",
+  requiresAuth,
+  deleteValidation,
+  validateRequest,
+  AddressesController.deleteOne
+);
 router.delete(
   "/users/:id",
   requiresAuth(),

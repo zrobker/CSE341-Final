@@ -58,3 +58,18 @@ DELETE http://localhost:3000/events/64b06f315ef8358a663b1381
 
 ###
 DELETE http://localhost:3000/users/64b1a222829bc319d153fa84
+
+
+###
+POST http://localhost:3000/addresses
+content-type: application/json
+
+{
+    "address": "This is a dummy address",
+    "createdAt": "2023-06-23T10:49:24.000Z",
+    "updatedAt": "2023-06-23T10:49:24.000Z"
+}
+###
+GET http://localhost:3000/addresses
+### 
+DELETE http://localhost:3000/addresses/64b59ebaf13176d6f28acbd5
