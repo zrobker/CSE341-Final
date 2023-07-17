@@ -73,3 +73,17 @@ content-type: application/json
 GET http://localhost:3000/addresses
 ### 
 DELETE http://localhost:3000/addresses/64b59ebaf13176d6f28acbd5
+###
+GET http://localhost:3000/registrations
+###
+POST http://localhost:3000/registrations
+content-type: application/json
+
+{
+    "event": "64b2ea81b84a9b37f4358cfe",
+    "user": "64b2ea5bb84a9b37f4358cfb",
+    "createdAt": "2023-06-23T10:49:24.000Z",
+    "updatedAt": "2023-06-23T10:49:24.000Z"
+}
+### 
+DELETE http://localhost:3000/registrations/64b5a5dcefa29493e0e891f7

@@ -82,6 +82,24 @@ const addressesValidation = () => {
   ];
 };
 
+const registrationsValidation = () => {
+  return [
+    body("event")
+      .optional()
+      .isString()
+      .isLength({ min: 1 })
+      .trim()
+      .escape()
+      .withMessage("Error, 'name' did not meet the require format."),
+    body("user")
+      .optional()
+      .isString()
+      .isLength({ min: 1 })
+      .trim()
+      .escape()
+      .withMessage("Error, 'name' did not meet the require format."),
+  ];
+};
 const getValidation = check("method")
   .custom((value, { req }) => req.method === "GET")
   .withMessage("Invalid request method");
@@ -101,6 +119,7 @@ const validateRequest = (req, res, next) => {
 };
 
 module.exports = {
+  registrationsValidation,
   addressesValidation,
   eventValidation,
   userValidation,
