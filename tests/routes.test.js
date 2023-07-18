@@ -43,22 +43,34 @@ describe("POST", () => {
   };
 
   test("Test POST localhost:3000/users", async () => {
-    const response = await request(app).post("/users").send(newUser);
+    const response = await request(app)
+      .post("/users")
+      .set("jest-bypass", "true")
+      .send(newUser);
     userId = response.body._id;
     expect(response.statusCode).toBe(200);
   });
   test("Test POST localhost:3000/events", async () => {
-    const response = await request(app).post("/events").send(newEvent);
+    const response = await request(app)
+      .post("/events")
+      .set("jest-bypass", "true")
+      .send(newEvent);
     eventId = response.body._id;
     expect(response.statusCode).toBe(200);
   });
   test("Test POST localhost:3000/addresses", async () => {
-    const response = await request(app).post("/addresses").send(newAddress);
+    const response = await request(app)
+      .post("/addresses")
+      .set("jest-bypass", "true")
+      .send(newAddress);
     addressId = response.body._id;
     expect(response.statusCode).toBe(200);
   });
   test("Test POST localhost:3000/activities", async () => {
-    const response = await request(app).post("/activities").send(newActivity);
+    const response = await request(app)
+      .post("/activities")
+      .set("jest-bypass", "true")
+      .send(newActivity);
     activityId = response.body._id;
     expect(response.statusCode).toBe(200);
   });
@@ -105,12 +117,14 @@ describe("PUT", () => {
   test("Test PUT http://localhost:3000/users/:id", async () => {
     const response = await request(app)
       .put(`/users/${userId}`)
+      .set("jest-bypass", "true")
       .send(updateUser);
     expect(response.statusCode).toBe(200);
   });
   test("Test PUT http://localhost:3000/events/:id", async () => {
     const response = await request(app)
       .put(`/events/${eventId}`)
+      .set("jest-bypass", "true")
       .send(updateEvent);
     expect(response.statusCode).toBe(200);
   });
@@ -118,19 +132,27 @@ describe("PUT", () => {
 
 describe("DELETE", () => {
   test("Test DELETE http://localhost:3000/users/:id", async () => {
-    const response = await request(app).delete(`/users/${userId}`);
+    const response = await request(app)
+      .delete(`/users/${userId}`)
+      .set("jest-bypass", "true");
     expect(response.statusCode).toBe(202);
   });
   test("Test DELETE http://localhost:3000/events/:id", async () => {
-    const response = await request(app).delete(`/events/${eventId}`);
+    const response = await request(app)
+      .delete(`/events/${eventId}`)
+      .set("jest-bypass", "true");
     expect(response.statusCode).toBe(202);
   });
   test("Test DELETE http://localhost:3000/addresses/:id", async () => {
-    const response = await request(app).delete(`/addresses/${addressId}`);
+    const response = await request(app)
+      .delete(`/addresses/${addressId}`)
+      .set("jest-bypass", "true");
     expect(response.statusCode).toBe(202);
   });
   test("Test DELETE http://localhost:3000/activities/:id", async () => {
-    const response = await request(app).delete(`/activities/${activityId}`);
+    const response = await request(app)
+      .delete(`/activities/${activityId}`)
+      .set("jest-bypass", "true");
     expect(response.statusCode).toBe(202);
   });
 });

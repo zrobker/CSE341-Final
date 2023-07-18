@@ -4,7 +4,8 @@ const UsersController = require("../controllers/users.controller");
 const EventsController = require("../controllers/events.controller");
 const AddressesController = require("../controllers/addresses.controller");
 const ActivitiesController = require("../controllers/activities.controller");
-const { auth, requiresAuth } = require("express-openid-connect");
+const { auth } = require("express-openid-connect");
+const checkAuth = require("../utils/auth");
 const {
   activitiesValidation,
   addressesValidation,
@@ -75,21 +76,21 @@ router.post(
 );
 router.post(
   "/addresses",
-  requiresAuth(),
+  checkAuth,
   addressesValidation(),
   validateRequest,
   AddressesController.createOne
 );
 router.post(
   "/users",
-  requiresAuth(),
+  checkAuth,
   userValidation(),
   validateRequest,
   UsersController.createOne
 );
 router.post(
   "/events",
-  requiresAuth(),
+  checkAuth,
   eventValidation(),
   validateRequest,
   EventsController.createOne
@@ -98,14 +99,14 @@ router.post(
 /** PUT */
 router.put(
   "/users/:id",
-  requiresAuth(),
+  checkAuth,
   userValidation(),
   validateRequest,
   UsersController.updateUser
 );
 router.put(
   "/events/:id",
-  requiresAuth(),
+  checkAuth,
   eventValidation(),
   validateRequest,
   EventsController.updateEvent
@@ -114,28 +115,28 @@ router.put(
 /** DELETE */
 router.delete(
   "/activities/:id",
-  requiresAuth(),
+  checkAuth,
   deleteValidation,
   validateRequest,
   ActivitiesController.deleteOne
 );
 router.delete(
   "/addresses/:id",
-  requiresAuth(),
+  checkAuth,
   deleteValidation,
   validateRequest,
   AddressesController.deleteOne
 );
 router.delete(
   "/users/:id",
-  requiresAuth(),
+  checkAuth,
   deleteValidation,
   validateRequest,
   UsersController.deleteOne
 );
 router.delete(
   "/events/:id",
-  requiresAuth(),
+  checkAuth,
   deleteValidation,
   validateRequest,
   EventsController.deleteOne
